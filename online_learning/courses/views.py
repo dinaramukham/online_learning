@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from rest_framework import viewsets, generics
 
-from online_learning.courses.models import Lesson, Courses
-from online_learning.courses.serliazers import CoursesySerializer, LessonSerializer
+from .models import Lesson, Courses
+from .serliazers import CoursesSerializer, LessonSerializer
 
 
 # Create your views here.
 class CoursesViewSet(viewsets.ModelViewSet):
-    serializer_class=CoursesySerializer
+    serializer_class=CoursesSerializer
     queryset = Courses.objects.all()
 
 class LessonCreateAPIView(generics.CreateAPIView ):
