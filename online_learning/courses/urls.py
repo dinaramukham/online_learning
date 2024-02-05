@@ -5,9 +5,9 @@ from .apps import CoursesConfig
 from .views import CoursesViewSet, LessonCreateAPIView, LessonListAPIView, LessonRetrieveAPIView, \
     LessonUpdateAPIView, LessonDestroyAPIView
 
-app_name= CoursesConfig.name
+app_name = CoursesConfig.name
 
-router=DefaultRouter()
+router = DefaultRouter()
 router.register(r'Courses', CoursesViewSet, basename='Courses')
 
 urlpatterns = [
