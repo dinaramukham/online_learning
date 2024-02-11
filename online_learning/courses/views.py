@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from .models import Lesson, Courses
 from .serliazers import CoursesSerializer, LessonSerializer
-from .users.permission import ModeratorPermissionsClass, IsOwnerPermissionsClass
+from users.permission import ModeratorPermissionsClass, IsOwnerPermissionsClass
 
 
 
