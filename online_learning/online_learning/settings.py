@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'online_learning.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':   'mailing_management', #BASE_DIR / 'db.sqlite3', ,
+        'NAME':   'online_learning',
         'USER': 'postgres',
         'PASSWORD': '12345',
         'HOST': 'localhost',
@@ -127,7 +127,7 @@ STATIC_URL = 'static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR/ 'media'
-AUTH_USER_MODEl = 'user.Users'
+AUTH_USER_MODEl = 'users.User'
 
 SIMPLE_JWT= {'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
              'REFRESH_TOKEN_LIFETIME': timedelta(days=1),}
