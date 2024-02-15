@@ -22,8 +22,8 @@ class User(AbstractUser):
 
 class Payment(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    courses = models.OneToOneField(Courses, on_delete=models.CASCADE, null=True, blank=True)
-    lesson = models.OneToOneField(Lesson, on_delete=models.CASCADE, null=True, blank=True)
+    courses = models.OneToOneField(Courses, on_delete=models.CASCADE, null=True, blank=True, primary_key= True)
+    lesson = models.OneToOneField(Lesson, on_delete=models.CASCADE, null=True, blank=True, primary_key= True)
     method_pay=models.CharField(max_length= 15, choices= (('cash', 'наличными'), ('card', 'картой')))
     date_payment = models.DateField(default= timezone.now)
     money = models.IntegerField()
