@@ -131,7 +131,7 @@ MEDIA_ROOT = BASE_DIR/ 'media'
 SIMPLE_JWT= {'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
              'REFRESH_TOKEN_LIFETIME': timedelta(days=1),}
 
-REST_FRAMEWORK={'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication') }
+REST_FRAMEWORK={'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',) }
 
 AUTH_USER_MODEl = 'users.User'
 
