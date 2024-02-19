@@ -1,15 +1,17 @@
 from django.shortcuts import render
-from httplib2 import Response
+from requests import Response
+
 from rest_framework import viewsets, generics
 from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
-
+from rest_framework.views import APIView
 from .models import Lesson, Courses
 from .paginators import MyPageNumberPagination
 from .serliazers import CoursesSerializer, LessonSerializer
+from users.models import Subscription
 from users.permission import ModeratorPermissionsClass, IsOwnerPermissionsClass
 
-from .users.models import Subscription
+
 
 
 # Create your views here.
@@ -36,7 +38,7 @@ class CoursesDestroyAPIView(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Courses.objects.all()
 
-class CoursesPostAPIView(generics.APIView):
+class CoursesPostAPIView(APIView):
     permission_classes = [IsAuthenticated]
     queryset = Courses.objects.all()
     def post(self, *args, **kwargs):
