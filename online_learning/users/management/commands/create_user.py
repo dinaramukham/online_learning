@@ -16,3 +16,4 @@ class Command(BaseCommand):
         user.set_password('etoyaadmin')
         user.save()
 
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcwODUxNzc3NSwiaWF0IjoxNzA4NDMxMzc1LCJqdGkiOiI4MDE4OGYyNTliNjQ0Mjc1YTA0OTE3NGY0YTQ1NzNiZiIsInVzZXJfaWQiOjl9.QnXsmw9AWm_I0w1ONcpq5tvxRfz0vKrkp_3iKetmclM

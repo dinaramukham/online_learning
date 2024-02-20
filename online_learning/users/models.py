@@ -13,21 +13,10 @@ class User(AbstractUser):
     phone = models.CharField(max_length= 35, null=True, blank= True,)
     city = models.CharField(max_length=50, null=True, blank= True,)
     avatar = models.ImageField(null=True,  blank= True,  upload_to='media/avatar/')
-    groups = models.ManyToManyField(
-        Group,
-        related_name="custom_user_set",
-        blank=True,
-    )
 
-    user_permissions = models.ManyToManyField(
-        Permission,
-        related_name="custom_user_set",
-        blank=True,
-    )
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
-    def __str__(self):
-        return self.email
+
 
 class Payment(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
@@ -36,8 +25,7 @@ class Payment(models.Model):
     method_pay=models.CharField(max_length= 15, choices= (('cash', 'наличными'), ('card', 'картой')))
     date_payment = models.DateField(default= timezone.now)
     money = models.IntegerField()
-    def __str__(self):
-        return self.user
+
 
 class Subscription(models.Model):
     user=models.ForeignKey(User, on_delete= models.DO_NOTHING )

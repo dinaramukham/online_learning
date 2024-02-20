@@ -19,6 +19,10 @@ class CoursesCreateAPIView(generics.CreateAPIView ):
     permission_classes = [IsAuthenticated]
     serializers_class=CoursesSerializer
 
+class CoursesRetrieveAPIView(generics.RetrieveAPIView):
+    permission_classes = [IsAuthenticated, ModeratorPermissionsClass | IsOwnerPermissionsClass]
+    serializers_class = CoursesSerializer
+    queryset = Courses.objects.all()
 class CoursesViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, ModeratorPermissionsClass | IsOwnerPermissionsClass]
     serializer_class=CoursesSerializer
@@ -55,6 +59,7 @@ class CoursesPostAPIView(APIView):
             message = 'подписка добавлена'
         return Response({"message": message})
 
+#             Lesson
 class LessonCreateAPIView(generics.CreateAPIView ):
     permission_classes = [IsAuthenticated]
     serializers_class=LessonSerializer
