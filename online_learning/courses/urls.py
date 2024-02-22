@@ -16,11 +16,11 @@ urlpatterns = [
     path('lesson/update/<int:pk>/', views.LessonUpdateAPIView.as_view(), name='lesson_update'),
     path('lesson/delete/<int:pk>/', views.LessonDestroyAPIView.as_view(), name='lesson_destroy'),
 
-    path('courses/create/', views.CoursesCreateAPIView.as_view(), name='lesson_create'),
-    path('courses/list/', views.CoursesListAPIView.as_view(), name='lesson_list'),
-    path('courses/retrieve/<int:pk>/', views.CoursesRetrieveAPIView.as_view(), name='lesson_retrieve'),
-    path('courses/update/<int:pk>/', views.CoursesUpdateAPIView.as_view(), name='lesson_update'),
-    path('courses/delete/<int:pk>/', views.CoursesDestroyAPIView.as_view(), name='lesson_destroy'),
+    path('courses/create/', views.CoursesCreateAPIView.as_view(), name='courses_create'),
+    path('courses/list/', views.CoursesListAPIView.as_view(), name='courses_list'),
+    path('courses/retrieve/<int:pk>/', views.CoursesRetrieveAPIView.as_view(), name='courses_retrieve'),
+    path('courses/update/<int:pk>/', views.CoursesUpdateAPIView.as_view(), name='courses_update'),
+    path('courses/delete/<int:pk>/', views.CoursesDestroyAPIView.as_view(), name='courses_destroy'),
 
     path('subscription/', views.CoursesPostAPIView.as_view(), name='subscription'),
 ]+ router.urls

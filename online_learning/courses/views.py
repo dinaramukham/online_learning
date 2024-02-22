@@ -3,39 +3,36 @@ from requests import Response
 
 from rest_framework import viewsets, generics
 from rest_framework.generics import get_object_or_404
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.views import APIView
 from .models import Lesson, Courses
 from .paginators import MyPageNumberPagination
-from .serliazers import CoursesSerializer, LessonSerializer
+from .serializers import CoursesSerializer, LessonSerializer
 from users.models import Subscription
-from users.permission import ModeratorPermissionsClass, IsOwnerPermissionsClass
-
-
-
+from users.permission import IsOwnerPermissionsClass
 
 # Create your views here.
 class CoursesCreateAPIView(generics.CreateAPIView ):
     permission_classes = [IsAuthenticated]
-    serializers_class=CoursesSerializer
+    serializer_class=CoursesSerializer
 
 class CoursesRetrieveAPIView(generics.RetrieveAPIView):
-    permission_classes = [IsAuthenticated, ModeratorPermissionsClass | IsOwnerPermissionsClass]
-    serializers_class = CoursesSerializer
+    permission_classes = [IsAuthenticated, IsAdminUser | IsOwnerPermissionsClass]
+    serializer_class = CoursesSerializer
     queryset = Courses.objects.all()
 class CoursesViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, ModeratorPermissionsClass | IsOwnerPermissionsClass]
+    permission_classes = [IsAuthenticated, IsAdminUser | IsOwnerPermissionsClass]
     serializer_class=CoursesSerializer
     queryset = Courses.objects.all()
 
 class CoursesUpdateAPIView(generics.UpdateAPIView):
-    permission_classes = [IsAuthenticated, ModeratorPermissionsClass | IsOwnerPermissionsClass]
-    serializers_class = CoursesSerializer
+    permission_classes = [IsAuthenticated, IsAdminUser | IsOwnerPermissionsClass]
+    serializer_class = CoursesSerializer
     queryset = Courses.objects.all()
 
 class CoursesListAPIView(generics.ListAPIView):
-    permission_classes = [IsAuthenticated, ModeratorPermissionsClass | IsOwnerPermissionsClass]
-    serializers_class = CoursesSerializer
+    permission_classes = [IsAuthenticated, IsAdminUser | IsOwnerPermissionsClass]
+    serializer_class = CoursesSerializer
     queryset = Courses.objects.all()
     pagination_class=MyPageNumberPagination
 class CoursesDestroyAPIView(generics.DestroyAPIView):
@@ -62,22 +59,22 @@ class CoursesPostAPIView(APIView):
 #             Lesson
 class LessonCreateAPIView(generics.CreateAPIView ):
     permission_classes = [IsAuthenticated]
-    serializers_class=LessonSerializer
+    serializer_class=LessonSerializer
 
 class LessonListAPIView(generics.ListAPIView):
-    permission_classes = [IsAuthenticated, ModeratorPermissionsClass | IsOwnerPermissionsClass]
-    serializers_class = LessonSerializer
+    permission_classes = [IsAuthenticated, IsAdminUser | IsOwnerPermissionsClass]
+    serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
     pagination_class=MyPageNumberPagination
 
 class LessonRetrieveAPIView(generics.RetrieveAPIView):
-    permission_classes = [IsAuthenticated, ModeratorPermissionsClass | IsOwnerPermissionsClass]
-    serializers_class = LessonSerializer
+    permission_classes = [IsAuthenticated, IsAdminUser | IsOwnerPermissionsClass]
+    serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
 
 class LessonUpdateAPIView(generics.UpdateAPIView):
-    permission_classes = [IsAuthenticated, ModeratorPermissionsClass | IsOwnerPermissionsClass]
-    serializers_class = LessonSerializer
+    permission_classes = [IsAuthenticated, IsAdminUser | IsOwnerPermissionsClass]
+    serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
 
 class LessonDestroyAPIView(generics.DestroyAPIView):

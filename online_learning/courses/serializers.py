@@ -4,7 +4,7 @@ from .validators import validator_youtube
 
 
 class LessonSerializer(serializers.ModelSerializer):
-    link_video = serializers.CharField(validators=[validator_youtube])
+    #link_video = serializers.CharField(validators=[validator_youtube])
 
     class Meta:
         model = Lesson
@@ -12,12 +12,10 @@ class LessonSerializer(serializers.ModelSerializer):
 
 
 class CoursesSerializer(serializers.ModelSerializer):
-    lesson_count = serializers.SerializerMethodField()
     lesson = LessonSerializer(source='lesson_set', many=True)
-
-    def get_lesson_count(self, obj):
-        return obj.lesson.count()
-
+    count_lesson = serializers.SerializerMethodField()
+    def get_count_lesson(self, obj):
+        return self.objects.lesson.all().count()
     class Meta:
         model = Courses
         fields = '__all__'
