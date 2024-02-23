@@ -9,9 +9,10 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.views import APIView
 from .models import Lesson, Courses
 from .paginators import MyPageNumberPagination
+from .permission import IsOwnerPermissionsClass
 from .serializers import CoursesSerializer, LessonSerializer
 from users.models import Subscription
-from users.permission import IsOwnerPermissionsClass
+
 
 
 # Create your views here.
@@ -39,12 +40,12 @@ class CoursesUpdateAPIView(generics.UpdateAPIView):
 
 
 class CoursesListAPIView(generics.ListAPIView):
-    permission_classes = [IsAuthenticated, IsAdminUser | IsOwnerPermissionsClass]
+    permission_classes = [IsAuthenticated]
     serializer_class = CoursesSerializer
     queryset = Courses.objects.all()
     pagination_class = MyPageNumberPagination
 
-
+#| IsOwnerPermissionsClass
 class CoursesDestroyAPIView(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Courses.objects.all()
@@ -75,7 +76,7 @@ class LessonCreateAPIView(generics.CreateAPIView):
 
 
 class LessonListAPIView(generics.ListAPIView):
-    permission_classes = [IsAuthenticated, IsAdminUser | IsOwnerPermissionsClass]
+    permission_classes = [IsAuthenticated]
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
     pagination_class = MyPageNumberPagination
