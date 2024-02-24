@@ -1,14 +1,35 @@
-from rest_framework import generics
+from rest_framework import generics, viewsets, status
+from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.response import Response
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from .models import Payment, Subscription
-from .serializers import PaymentSerializer, MyTokenObtainPairSerializer, SubscriptionSerializer
+from .models import Payment, Subscription, User
+from .serializers import PaymentSerializer, MyTokenObtainPairSerializer, SubscriptionSerializer, UserSerializer
+
+from rest_framework import routers
+router = routers.SimpleRouter()
 
 
 # Create your views here.
 class MyTokenObtainPairView(TokenObtainPairSerializer):
     serializer_class = MyTokenObtainPairSerializer
 
+class UserViewSet(viewsets.ModelViewSet):
+
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+
+    @action(detail=True, methods=['post'])
+    def set_password(self, request, pk=None):
+        user = self.get_object()
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            user.set_password(serializer.validated_data['password'])
+            user.save()
+            return Response({'status': 'password set'})
+        else:
+            return Response(serializer.errors,
+                            status=status.HTTP_400_BAD_REQUEST)
 
 class PaymentListAPIView(generics.ListAPIView):
     serializer_class = PaymentSerializer
