@@ -1,3 +1,5 @@
+from django.contrib.auth.models import Group
+#/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/django/contrib/auth/models.py
 from rest_framework import generics, viewsets, status
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
