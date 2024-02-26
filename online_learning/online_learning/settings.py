@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'courses',
 
     'rest_framework',
+    'rest_framework_simplejwt',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -130,6 +132,16 @@ MEDIA_ROOT = BASE_DIR/ 'media'
 
 SIMPLE_JWT= {'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
              'REFRESH_TOKEN_LIFETIME': timedelta(days=3),}
+SWAGGER_SETTINGS={
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+        }
+    }
+}
+
 
 REST_FRAMEWORK={'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',) }
 
