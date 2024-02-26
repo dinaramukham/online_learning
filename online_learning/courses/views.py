@@ -60,7 +60,10 @@ class CoursesDestroyAPIView(generics.DestroyAPIView):
     queryset = Courses.objects.all()
 
 
-class CoursesPostAPIView(APIView):
+class CoursesCreateSubscriptionAPIView(APIView):
+    """
+    логика  подписки
+    """
     permission_classes = [IsAuthenticated]
     queryset = Courses.objects.all()
 
