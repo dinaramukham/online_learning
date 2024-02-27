@@ -1,5 +1,5 @@
 from django.contrib.auth.models import Group
-#/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/django/contrib/auth/models.py
+# /Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/django/contrib/auth/models.py
 from rest_framework import generics, viewsets, status
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
@@ -9,6 +9,7 @@ from .models import Payment, Subscription, User
 from .serializers import PaymentSerializer, MyTokenObtainPairSerializer, SubscriptionSerializer, UserSerializer
 
 from rest_framework import routers
+
 router = routers.SimpleRouter()
 
 
@@ -16,8 +17,8 @@ router = routers.SimpleRouter()
 class MyTokenObtainPairView(TokenObtainPairSerializer):
     serializer_class = MyTokenObtainPairSerializer
 
-class UserViewSet(viewsets.ModelViewSet):
 
+class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
@@ -32,6 +33,7 @@ class UserViewSet(viewsets.ModelViewSet):
         else:
             return Response(serializer.errors,
                             status=status.HTTP_400_BAD_REQUEST)
+
 
 class PaymentListAPIView(generics.ListAPIView):
     serializer_class = PaymentSerializer

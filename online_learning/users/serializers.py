@@ -12,10 +12,12 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['email'] = user.email
         return token
 
-class UserSerializer(serializers.ModelSerializer  ):
+
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model=User
-        fields='__all__'
+        model = User
+        fields = '__all__'
+
 
 class PaymentSerializer(serializers.ModelSerializer):
     class Meta:

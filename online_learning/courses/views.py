@@ -14,7 +14,6 @@ from .serializers import CoursesSerializer, LessonSerializer
 from users.models import Subscription
 
 
-
 # Create your views here.
 class CoursesCreateAPIView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
@@ -25,7 +24,7 @@ class CoursesCreateAPIView(generics.CreateAPIView):
         course_id = self.request.data.get('course_id')
         course_item = get_object_or_404(Courses, id=course_id)
         if course_item == None:
-            course_item.user=user
+            course_item.user = user
             course_item.save()
         return Response()
 
@@ -54,7 +53,8 @@ class CoursesListAPIView(generics.ListAPIView):
     queryset = Courses.objects.all()
     pagination_class = MyPageNumberPagination
 
-#| IsOwnerPermissionsClass
+
+# | IsOwnerPermissionsClass
 class CoursesDestroyAPIView(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Courses.objects.all()

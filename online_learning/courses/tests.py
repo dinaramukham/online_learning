@@ -36,6 +36,7 @@ class CoursesTest(APITestCase):
         response = self.client.patch(f'/lessons/update/{course.id}/', data={"new_title": new_title}, )
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
     def test_post_courses(self):
         """
             проверка обновления подписки
@@ -51,6 +52,7 @@ class CoursesTest(APITestCase):
 
         response = self.client.patch('subscription/', data=data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
 
 class LessonTest(APITestCase):
     def setUp(self):

@@ -9,7 +9,6 @@ from .validators import validator_youtube
 class LessonSerializer(serializers.ModelSerializer):
     link_video = serializers.CharField(validators=[validator_youtube])
 
-
     class Meta:
         model = Lesson
         fields = '__all__'
