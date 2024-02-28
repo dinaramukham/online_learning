@@ -23,6 +23,7 @@ class Payment(models.Model):
     method_pay = models.CharField(max_length=15, choices=(('cash', 'наличными'), ('card', 'картой')))
     date_payment = models.DateField(default=timezone.now, null=True, blank=True)
     money = models.IntegerField()
+    link = models.URLField(max_length=400, verbose_name='Ссылка на оплату', null=True, blank=True)
 
 
 class Subscription(models.Model):
