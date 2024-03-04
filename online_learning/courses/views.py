@@ -13,6 +13,8 @@ from .permission import IsOwnerPermissionsClass, IsModer
 from .serializers import CoursesSerializer, LessonSerializer
 from users.models import Subscription
 
+from .tasks import send_email_info
+
 
 # Create your views here.
 class CoursesCreateAPIView(generics.CreateAPIView):
@@ -75,9 +77,11 @@ class CoursesCreateSubscriptionAPIView(APIView):
         if subs_item.exists():
             subs_item.delete()
             message = 'подписка удалена'
+            send_email_info.delay(user.email, message )
         else:
             Subscription.objects.create(user=user, courses=course_item)
             message = 'подписка добавлена'
+            send_email_info.delay(user.email, message)
         return Response({"message": message})
 
 
