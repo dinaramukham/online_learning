@@ -8,7 +8,7 @@ from .settings import EMAIL_HOST_USER
 def send_email_info(name_email, message):
     send_mail(
         "Обновление",
-        message ,
+        message,
         EMAIL_HOST_USER,
         [name_email],
         fail_silently=False,

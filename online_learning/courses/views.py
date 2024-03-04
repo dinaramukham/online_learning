@@ -77,7 +77,7 @@ class CoursesCreateSubscriptionAPIView(APIView):
         if subs_item.exists():
             subs_item.delete()
             message = 'подписка удалена'
-            send_email_info.delay(user.email, message )
+            send_email_info.delay(user.email, message)
         else:
             Subscription.objects.create(user=user, courses=course_item)
             message = 'подписка добавлена'
