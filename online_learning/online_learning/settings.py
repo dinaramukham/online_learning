@@ -46,7 +46,8 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework_simplejwt',
-    'drf_yasg'
+    'drf_yasg',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -160,7 +161,7 @@ CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
 
 # celery-beat
-INSTALLED_APPS = ['django_celery_beat']
+
 CELERY_BEAT_SCHEDULE = {'task-name':
                             {'task': 'courses.tasks.my_task',
                              'schedule': timedelta(minutes=10),
