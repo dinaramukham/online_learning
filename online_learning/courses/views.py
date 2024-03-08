@@ -1,11 +1,10 @@
-from django.db.migrations import serializer
-from django.shortcuts import render
+
 from requests import Response
 
 from rest_framework import viewsets, generics
-from rest_framework.fields import SerializerMethodField
+
 from rest_framework.generics import get_object_or_404
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from .models import Lesson, Courses
 from .paginators import MyPageNumberPagination

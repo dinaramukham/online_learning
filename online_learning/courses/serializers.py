@@ -1,5 +1,5 @@
 from django.contrib.sites import requests
-from rest_framework import serializers, generics
+from rest_framework import serializers
 from rest_framework.fields import SerializerMethodField
 
 from .models import Lesson, Courses
