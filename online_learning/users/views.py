@@ -21,17 +21,17 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
-    @action(detail=True, methods=['post'])
-    def set_password(self, request, pk=None):
-        user = self.get_object()
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            user.set_password(serializer.validated_data['password'])
-            user.save()
-            return Response({'status': 'password set'})
-        else:
-            return Response(serializer.errors,
-                            status=status.HTTP_400_BAD_REQUEST)
+    #@action(detail=True, methods=['post'])
+    #def set_password(self, request, pk=None):
+    #    user = self.get_object()
+    #    serializer = UserSerializer(data=request.data)
+    #    if serializer.is_valid():
+    #        user.set_password(serializer.validated_data['password'])
+    #        user.save()
+    #        return Response({'status': 'password set'})
+    #    else:
+    #        return Response(serializer.errors,
+    #                        status=status.HTTP_400_BAD_REQUEST)
 
 
 class PaymentListAPIView(generics.ListAPIView):
@@ -47,8 +47,6 @@ class PaymentCreateAPIView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated, ]
     queryset = Payment.objects.all()
 
-    # search_fields = ['lesson', 'courses', 'method_pay']
-    # ordering_fields = ['date_payment']
     def perform_create(self, serializer):
         payment_serializer = serializer.save()
         stripe_product_id = create_stripe_product(payment_serializer.courses)
@@ -56,9 +54,21 @@ class PaymentCreateAPIView(generics.CreateAPIView):
         payment_serializer.link = create_stripe_session(stripe_price_id)
 
 
+class SubscriptionCreateAPIView(generics.CreateAPIView):
+    serializer_class = SubscriptionSerializer
+    permission_classes = [IsAuthenticated]
+    queryset = Subscription.objects.all()
+
+
 class SubscriptionListAPIView(generics.ListAPIView):
     serializer_class = SubscriptionSerializer
-    permission_classes = [IsAuthenticated, IsAdminUser]
+    permission_classes = [IsAuthenticated]
     queryset = Subscription.objects.all()
     search_fields = ['user', 'courses']
     ordering_fields = ['user', 'courses']
+
+
+class SubscriptionDestroyAPIView(generics.DestroyAPIView):
+    serializer_class = SubscriptionSerializer
+    permission_classes = [IsAuthenticated]
+    queryset = Subscription.objects.all()

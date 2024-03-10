@@ -87,7 +87,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv('NAME'),
-        'USER': os.getenv('USER'),
+        'USER': 'postgres',#os.getenv('USER'),
         'PASSWORD': os.getenv('PASSWORD'),
         'HOST': os.getenv('HOST'),
     }
@@ -132,6 +132,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 SIMPLE_JWT = {'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
               'REFRESH_TOKEN_LIFETIME': timedelta(days=3), }
+
 SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS': {
         'Bearer': {
@@ -142,7 +143,10 @@ SWAGGER_SETTINGS = {
     }
 }
 
-REST_FRAMEWORK = {'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',)}
+REST_FRAMEWORK = {'DEFAULT_AUTHENTICATION_CLASSES': (
+    'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
 
 AUTH_USER_MODEL = 'users.User'
 

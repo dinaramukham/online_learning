@@ -1,7 +1,6 @@
 from rest_framework import status
 from rest_framework.test import APITestCase, APIClient
 
-
 from online_learning.courses.models import Courses, Lesson
 from online_learning.users.models import User, Subscription
 
