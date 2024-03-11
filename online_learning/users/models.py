@@ -10,7 +10,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=35, null=True, blank=True, )
     city = models.CharField(max_length=50, null=True, blank=True, )
-    avatar = models.ImageField(null=True, blank=True, upload_to='media/avatar/')
+    avatar = models.ImageField(null=True, blank=True, upload_to='media/')
     last_login = models.DateField(null=True, blank=True, default=timezone.now)
 
     USERNAME_FIELD = "email"
