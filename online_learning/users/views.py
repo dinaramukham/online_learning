@@ -1,3 +1,4 @@
+from django.contrib.auth.hashers import make_password
 from rest_framework import generics, viewsets, status
 from rest_framework.decorators import action
 
@@ -21,17 +22,9 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
-    #@action(detail=True, methods=['post'])
-    #def set_password(self, request, pk=None):
-    #    user = self.get_object()
-    #    serializer = UserSerializer(data=request.data)
-    #    if serializer.is_valid():
-    #        user.set_password(serializer.validated_data['password'])
-    #        user.save()
-    #        return Response({'status': 'password set'})
-    #    else:
-    #        return Response(serializer.errors,
-    #                        status=status.HTTP_400_BAD_REQUEST)
+    def perform_create(self, serializer):
+        password = make_password(serializer.validated_data['password'])
+        serializer.save(password=password)
 
 
 class PaymentListAPIView(generics.ListAPIView):
