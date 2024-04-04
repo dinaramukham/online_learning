@@ -20,10 +20,11 @@ class CoursesSerializer(serializers.ModelSerializer):
     you_subscribed = SerializerMethodField()
 
     def get_count_lesson(self, obj):
-        return Lesson.objects.filter(course=obj.pk).count()
+        return Lesson.objects.filter(course=obj).count()
 
     def get_you_subscribed(self, obj):
-        if requests.user == obj.payment.user:
+        # обращение к текущему пользователю
+        if self.context['request'].user == obj.payment.user:
             return True
         return False
 

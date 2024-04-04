@@ -1,6 +1,6 @@
 from requests import Response
 
-from rest_framework import viewsets, generics
+from rest_framework import generics
 
 from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
@@ -20,7 +20,7 @@ class CoursesCreateAPIView(generics.CreateAPIView):
     serializer_class = CoursesSerializer
 
     def post(self, *args, **kwargs):
-        user = self.requests.user
+        user = self.request.user
         course_id = self.request.data.get('course_id')
         course_item = get_object_or_404(Courses, id=course_id)
         if course_item == None:
@@ -30,12 +30,6 @@ class CoursesCreateAPIView(generics.CreateAPIView):
 
 
 class CoursesRetrieveAPIView(generics.RetrieveAPIView):
-    permission_classes = [IsAuthenticated, IsModer | IsOwnerPermissionsClass]
-    serializer_class = CoursesSerializer
-    queryset = Courses.objects.all()
-
-
-class CoursesViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsModer | IsOwnerPermissionsClass]
     serializer_class = CoursesSerializer
     queryset = Courses.objects.all()
@@ -64,6 +58,7 @@ class CoursesCreateSubscriptionAPIView(APIView):
     """
     логика  подписки
     """
+    serializer_class = CoursesSerializer
     permission_classes = [IsAuthenticated]
     queryset = Courses.objects.all()
 

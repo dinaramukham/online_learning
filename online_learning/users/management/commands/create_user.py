@@ -15,3 +15,4 @@ class Command(BaseCommand):
         )
         user.set_password('etoyaadmin')
         user.save()
+# pbkdf2_sha256$600000$c0zF1JUxYB28Abv2Ft2nk8$4cjLM1teBEvlfq25q8OvMvURQ6gZz8Et7NwyFePkbrg=
