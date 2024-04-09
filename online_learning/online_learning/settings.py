@@ -85,9 +85,9 @@ WSGI_APPLICATION = 'online_learning.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': os.environ.get('ENGINE'),
-        'NAME': 'online_learning', #os.environ.get('NAME'),
-        'USER': 'postgres', #os.environ.get('USER'),
-        'PASSWORD': os.environ.get('PASSWORD'), #,
+        'NAME': 'online_learning',  # os.environ.get('NAME'),
+        'USER': 'postgres',  # os.environ.get('USER'),
+        'PASSWORD': os.environ.get('PASSWORD'),  # ,
         'HOST': os.environ.get('HOST'),
     }
 }
@@ -144,7 +144,7 @@ SWAGGER_SETTINGS = {
 
 REST_FRAMEWORK = {'DEFAULT_AUTHENTICATION_CLASSES': (
     'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+)
 }
 
 AUTH_USER_MODEL = 'users.User'
