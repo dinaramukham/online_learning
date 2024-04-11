@@ -40,10 +40,7 @@ flake8==6.1.0
 funcsigs==1.0.2
 fuzzywuzzy==0.18.0
 gcloud==0.18.3
-google-api-core==2.11.1
-google-api-python-client==2.98.0
 google-auth-httplib2==0.1.1
-googleapis-common-protos==1.60.0
 httplib2==0.22.0
 idna==3.4
 importlib-metadata==6.8.0
