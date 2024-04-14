@@ -86,10 +86,10 @@ WSGI_APPLICATION = 'online_learning.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': os.environ.get('ENGINE'),
-        'NAME': os.environ.get('NAME'),
+        'NAME': os.environ.get('POSTGRES_NAME'),
         'USER': 'postgres', #os.environ.get('USER'),
         'PASSWORD': os.environ.get('PASSWORD'),  # ,
-        'HOST': os.environ.get('HOST'),
+        'HOST': os.environ.get('POSTGRES_HOST'),
     }
 }
 
