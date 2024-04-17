@@ -17,11 +17,14 @@ services:
     command: celery -A online_learning worker -l INFO
     depends_on:
       - redis
+      - db
       - app
   app:
     tty:  true
     build:  .
-    command: python manage.py migrate && python manage.py runserver 0.0.0.0:8000
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
     volumes:
       - .:/app
     depends_on:
